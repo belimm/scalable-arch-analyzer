@@ -21,6 +21,10 @@ public class Address {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToOne(mappedBy = "shippingAddress", cascade = CascadeType.ALL)
+    private Order order;
+
+
     public Address() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -106,6 +110,14 @@ public class Address {
         this.user = user;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
@@ -117,8 +129,8 @@ public class Address {
                 ", country='" + country + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", user=" + user +
+                ", order=" + order +
                 '}';
     }
-
-
 }

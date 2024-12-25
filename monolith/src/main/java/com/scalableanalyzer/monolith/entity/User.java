@@ -29,6 +29,12 @@ public class User {
             fetch = FetchType.LAZY)
     List<Cart> cartItems;
 
+    @OneToMany(mappedBy = "userOrder",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    List<Order> orders;
+
+
     public User() {
         this.role = "NORMAL";
         this.createdAt = LocalDateTime.now();
@@ -136,6 +142,14 @@ public class User {
 
     public void setCartItems(List<Cart> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

@@ -28,6 +28,11 @@ public class Product {
             fetch = FetchType.LAZY)
     List<CartItem> cartItems;
 
+    @OneToMany(mappedBy = "productOrder",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    List<OrderItem> orderItems;
+
 
     public Product() {
         this.createdAt = LocalDateTime.now();
@@ -43,6 +48,8 @@ public class Product {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
+
 
 
     public Long getProductId() {
@@ -109,8 +116,21 @@ public class Product {
         this.category = category;
     }
 
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
 
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
 
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
     @java.lang.Override
     public java.lang.String toString() {
