@@ -24,6 +24,11 @@ public class User {
             fetch = FetchType.LAZY)
     List<Address> addressList;
 
+    @OneToMany(mappedBy = "userCart",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    List<Cart> cartItems;
+
     public User() {
         this.role = "NORMAL";
         this.createdAt = LocalDateTime.now();
@@ -39,6 +44,19 @@ public class User {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
+    public User(Long id, String firstName, String lastName, String email, String password, String role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+
 
     public Long getId() {
         return id;
@@ -110,6 +128,14 @@ public class User {
 
     public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
+    }
+
+    public List<Cart> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<Cart> cartItems) {
+        this.cartItems = cartItems;
     }
 
     @Override

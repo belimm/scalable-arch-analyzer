@@ -3,6 +3,7 @@ package com.scalableanalyzer.monolith.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +23,11 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @OneToMany(mappedBy = "product",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    List<CartItem> cartItems;
+
 
     public Product() {
         this.createdAt = LocalDateTime.now();
@@ -37,6 +43,7 @@ public class Product {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
 
     public Long getProductId() {
         return productId;
@@ -101,6 +108,9 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
+
 
     @java.lang.Override
     public java.lang.String toString() {
