@@ -42,7 +42,7 @@ public class ProductController {
      *  GET         -- http://localhost:8081/inventory/products/{categoryId}
      *              -- Get products with categoryId response type as List of ProductDto
      */
-    @GetMapping("/products/{categoryId}")
+    @GetMapping("/products/category/{categoryId}")
     public ResponseEntity<?> getProductsByCategoryId(@PathVariable("categoryId") Long categoryId){
         return productService.getProductsByCategoryId(categoryId);
     }
