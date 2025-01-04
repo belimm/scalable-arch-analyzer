@@ -16,7 +16,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-   /* @PostMapping("/orders")
+    @PostMapping("/orders")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequestDto orderRequestDto) {
         return orderService.createOrder(orderRequestDto);
     }
@@ -35,5 +35,5 @@ public class OrderController {
     public ResponseEntity<?> getOrderTotal(@PathVariable Long orderId) {
         return orderService.getOrderTotal(orderId);
     }
-*/
+
 }

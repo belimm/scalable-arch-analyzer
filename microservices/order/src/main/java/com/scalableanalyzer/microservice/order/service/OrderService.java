@@ -3,6 +3,7 @@ package com.scalableanalyzer.microservice.order.service;
 import com.scalableanalyzer.microservice.order.dto.ErrorDto;
 import com.scalableanalyzer.microservice.order.dto.OrderItemDto;
 import com.scalableanalyzer.microservice.order.dto.OrderRequestDto;
+import com.scalableanalyzer.microservice.order.dto.OrderSummaryDto;
 import com.scalableanalyzer.microservice.order.entity.*;
 import com.scalableanalyzer.microservice.order.repository.AddressRepository;
 import com.scalableanalyzer.microservice.order.repository.OrderRepository;
@@ -159,7 +160,25 @@ public class OrderService implements IOrderService {
             total += orderItem.getQuantity()*orderItem.getPrice();
         }
 
-        return ResponseEntity.ok().body(total) ;
+        OrderSummaryDto orderSummaryDto = new OrderSummaryDto();
+        orderSummaryDto.setOrderId(id);
+        orderSummaryDto.setCustomerId(order.getUserOrder().getId());
+        orderSummaryDto.setTotalPrice(total);
+
+        int totalQUantity = 0;
+        for(OrderItem orderItem : order.getOrderItems()) {
+            totalQUantity += orderItem.getQuantity();
+        }
+        orderSummaryDto.setTotalQuantity(totalQUantity);
+
+
+
+
+        System.out.println(order.getUserOrder().getId());
+
+
+
+        return ResponseEntity.ok().body(orderSummaryDto) ;
     }
 
     private List<OrderItemDto> toOrderItemDto(Order order, OrderRequestDto orderRequestDto) {

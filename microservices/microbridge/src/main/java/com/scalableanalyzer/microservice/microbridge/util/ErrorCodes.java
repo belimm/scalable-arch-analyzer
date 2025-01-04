@@ -7,6 +7,7 @@ public enum ErrorCodes {
     ADDRESS_NOT_FOUND(4L, "Address not found"),
     CART_NOT_FOUND(5L, "Cart not found"),
     CART_ITEM_NOT_FOUND(6L, "Cart item not found"),
+    ORDER_NOT_FOUND(7L, "Order not found"),
     SERVER_ERROR(100L, "Server error");
 
 
