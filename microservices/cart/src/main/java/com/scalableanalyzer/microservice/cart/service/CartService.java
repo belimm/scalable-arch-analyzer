@@ -8,6 +8,8 @@ import com.scalableanalyzer.microservice.cart.entity.CartItem;
 import com.scalableanalyzer.microservice.cart.entity.User;
 import com.scalableanalyzer.microservice.cart.repository.CartRepository;
 import com.scalableanalyzer.microservice.cart.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +69,7 @@ public class CartService implements ICartService {
             cart.setUserCart(userOptional.get());
             cart.setTotalPrice(0.0); // Initialize with zero
             Cart newCart = cartRepository.save(cart);
-            return ResponseEntity.status(409).body(toDto(newCart));
+            return ResponseEntity.status(HttpStatus.OK).body(toDto(newCart));
     }
 
     @Override
@@ -79,12 +81,16 @@ public class CartService implements ICartService {
         }
 
 
+        System.out.println(userOptional.get());
+
+
         Cart newCart = cartRepository.findByUserCart_Id(userId);
 
         if(newCart == null) {
             return ResponseEntity.status(404).body("Cart not found");
         }
 
+        System.out.println("deleting cart");
 
         cartRepository.deleteById(newCart.getCartId());
 

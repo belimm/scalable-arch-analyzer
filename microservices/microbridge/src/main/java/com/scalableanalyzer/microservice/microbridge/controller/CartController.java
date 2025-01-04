@@ -1,5 +1,6 @@
 package com.scalableanalyzer.microservice.microbridge.controller;
 
+import com.scalableanalyzer.microservice.microbridge.dto.CartItemDto;
 import com.scalableanalyzer.microservice.microbridge.service.CartItemService;
 import com.scalableanalyzer.microservice.microbridge.service.CartService;
 
@@ -19,7 +20,7 @@ public class CartController {
         this.cartService = cartService;
         this.cartItemService = cartItemService;
     }
-/*
+
     @GetMapping("/{userId}")
     public ResponseEntity<?> createCart(@PathVariable("userId") Long userId) {
         return cartService.createCart(userId);
@@ -32,12 +33,11 @@ public class CartController {
 
     @PostMapping("/{cartId}/item")
     public ResponseEntity<?> addItemToCart(@PathVariable("cartId") Long cartId, @RequestBody CartItemDto cartItem) {
-
         return cartItemService.addItem(cartId, cartItem);
     }
 
     @DeleteMapping("/{cartId}/{cartItemId}")
     public ResponseEntity<?> deleteCartItemFromCart(@PathVariable("cartId") Long cartId, @PathVariable("cartItemId") Long cartItemId) {
         return cartItemService.deleteCartItemFromCart(cartId, cartItemId);
-    }*/
+    }
 }
