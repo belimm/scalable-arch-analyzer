@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AddressService implements IAddressService{
+public class
+AddressService implements IAddressService{
     private final AddressRepository addressRepository;
     private final UserRepository userRepository;
 

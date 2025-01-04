@@ -19,7 +19,7 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @GetMapping("/user")
+    @PostMapping("/user/login")
     public ResponseEntity<?> loginUser(@RequestBody UserDto user) {
         return userService.loginUser(user);
     }
